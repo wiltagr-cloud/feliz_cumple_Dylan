@@ -3,69 +3,77 @@
 
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Una sorpresa para Dylan 🎂</title>
+    <title>Para Dylan 🎂✨</title>
 
     <link rel="stylesheet" href="estilos.css">
 </head>
 
 <body>
 
-    <!-- =====================================
-         FONDO
-    ====================================== -->
+    <!-- =====================================================
+         FONDOS Y EFECTOS GENERALES
+    ====================================================== -->
 
-    <div class="fondo-estrellas"></div>
+    <div class="estrellas"></div>
 
-    <div class="luces luz1"></div>
-    <div class="luces luz2"></div>
-    <div class="luces luz3"></div>
+    <div class="confeti-container"></div>
+
+    <div class="corazones-container"></div>
+
+    <div class="estrellas-movimiento"></div>
 
 
-    <!-- =====================================
-         PANTALLA 1
-         INGRESAR NOMBRE
-    ====================================== -->
+    <!-- =====================================================
+         PÁGINA 1 — BIENVENIDA
+    ====================================================== -->
 
-    <section id="inicio" class="pantalla activa">
+    <section class="pagina activa" id="inicio">
 
-        <div class="tarjeta inicio-card">
+        <div class="contenido inicio-contenido">
 
-            <div class="icono-regalo">
-                🎁
+            <div class="emoji-grande">
+                🎂
             </div>
 
-            <p class="etiqueta">
-                TIENES UNA PEQUEÑA SORPRESA
+            <p class="pequeno-titulo">
+                HAY ALGO PREPARADO PARA TI
             </p>
 
             <h1>
-                Hay algo<br>
-                preparado para ti...
+                Hola, <span>Dylan</span> ✨
             </h1>
 
             <p class="descripcion">
-                Pero antes de comenzar necesito
-                saber quién eres.
+                Antes de comenzar...
+                necesito saber quién es el cumpleañero.
             </p>
 
-            <label for="nombre">
-                ¿Cuál es tu nombre?
-            </label>
+            <div class="caja-nombre">
 
-            <input
-                type="text"
-                id="nombre"
-                placeholder="Escribe tu nombre..."
-                autocomplete="off"
+                <label for="nombre">
+                    Escribe tu nombre
+                </label>
+
+                <input
+                    type="text"
+                    id="nombre"
+                    placeholder="Tu nombre..."
+                    autocomplete="off"
+                >
+
+                <p class="error" id="errorNombre">
+                    Escribe tu nombre para continuar 💛
+                </p>
+
+            </div>
+
+            <button
+                class="btn btn-dorado"
+                onclick="comenzar()"
             >
-
-            <p id="errorNombre" class="error"></p>
-
-            <button id="btnComenzar" class="btn-principal">
-                Comenzar ✨
+                Abrir mi sorpresa ✨
             </button>
 
         </div>
@@ -73,42 +81,42 @@
     </section>
 
 
+    <!-- =====================================================
+         PÁGINA 2 — INTRODUCCIÓN
+    ====================================================== -->
 
-    <!-- =====================================
-         PANTALLA 2
-         BIENVENIDA
-    ====================================== -->
+    <section class="pagina" id="intro">
 
-    <section id="bienvenida" class="pantalla">
+        <div class="contenido">
 
-        <div class="tarjeta bienvenida-card">
-
-            <div class="emoji-grande">
-                ✨
+            <div class="sobre">
+                💌
             </div>
 
-            <p class="etiqueta">
-                SABÍA QUE ERAS TÚ
+            <p class="pequeno-titulo">
+                UNA PEQUEÑA SORPRESA
             </p>
 
             <h2>
-                Hola,
-                <span id="nombreBienvenida">
-                    Dylan
-                </span> 🤍
+                Esto es para ti, Dylan
             </h2>
 
-            <p class="texto-suave">
-                Hoy quería hacer algo diferente.
+            <p class="texto-centro">
+                No es una gran cosa ni pretende ser algo complicado.
+                Solo quería hacer algo diferente para desearte
+                un bonito cumpleaños.
             </p>
 
-            <p class="texto-suave">
-                Así que preparé una pequeña experiencia
-                especialmente para ti.
+            <p class="texto-centro tenue">
+                Pero antes de llegar al final...
+                hay algunos recuerdos que quiero enseñarte.
             </p>
 
-            <button id="btnRegalo" class="btn-principal">
-                Abrir mi sorpresa 🎁
+            <button
+                class="btn"
+                onclick="siguiente('recuerdo1')"
+            >
+                Ver el primer recuerdo 📸
             </button>
 
         </div>
@@ -116,84 +124,83 @@
     </section>
 
 
+    <!-- =====================================================
+         PÁGINA 3 — FOTO 1
+    ====================================================== -->
 
-    <!-- =====================================
-         PANTALLA 3
-         CAJA DE REGALO
-    ====================================== -->
+    <section class="pagina pagina-foto" id="recuerdo1">
 
-    <section id="regalo" class="pantalla">
+        <div class="contenido">
 
-        <div class="tarjeta regalo-card">
-
-            <p class="etiqueta">
-                PRIMERA SORPRESA
+            <p class="numero">
+                RECUERDO 01 / 06
             </p>
 
             <h2>
-                Hay algo dentro...
+                Un pequeño recuerdo 📸
             </h2>
 
-            <p class="texto-suave">
-                Pero tendrás que abrirlo.
-            </p>
+            <div class="foto-marco marco-1">
 
-            <div id="cajaRegalo" class="caja-regalo">
-
-                <div class="tapa-caja">
-                    <div class="cinta"></div>
-                </div>
-
-                <div class="cuerpo-caja">
-                    <div class="cinta"></div>
-                </div>
+                <img
+                    src="imagen1.jpeg"
+                    alt="Recuerdo 1"
+                >
 
             </div>
 
-            <button id="btnAbrirCaja" class="btn-principal">
-                Abrir regalo 🎁
-            </button>
+            <p class="frase-foto">
+                Hay momentos que, aunque pase el tiempo,
+                siguen teniendo un pequeño espacio en la memoria.
+            </p>
 
-            <p id="mensajeCaja" class="mensaje-caja"></p>
+            <button
+                class="btn"
+                onclick="siguiente('recuerdo2')"
+            >
+                Siguiente recuerdo →
+            </button>
 
         </div>
 
     </section>
 
 
+    <!-- =====================================================
+         PÁGINA 4 — FOTO 2
+    ====================================================== -->
 
-    <!-- =====================================
-         PANTALLA 4
-         TRANSICIÓN
-    ====================================== -->
+    <section class="pagina pagina-foto" id="recuerdo2">
 
-    <section id="recuerdosIntro" class="pantalla">
+        <div class="contenido">
 
-        <div class="tarjeta">
-
-            <div class="emoji-grande">
-                📸
-            </div>
-
-            <p class="etiqueta">
-                SEGUNDA SORPRESA
+            <p class="numero">
+                RECUERDO 02 / 06
             </p>
 
             <h2>
-                Algunos recuerdos...
+                Otro momento ✨
             </h2>
 
-            <p class="texto-suave">
-                Hay fotografías que terminan guardando
-                mucho más que un simple momento.
+            <div class="foto-marco marco-2">
+
+                <img
+                    src="imagen2.jpeg"
+                    alt="Recuerdo 2"
+                >
+
+            </div>
+
+            <p class="frase-foto">
+                Porque algunas fotografías dicen mucho
+                sin necesidad de explicar demasiado.
             </p>
 
-            <p class="texto-suave">
-                Y estas son algunas de ellas.
-            </p>
-
-            <button id="btnFotos" class="btn-principal">
-                Ver recuerdos 📸
+            <button
+                class="btn"
+                onclick="siguiente('recuerdo3')"
+            >
+                Continuar →
             </button>
 
         </div>
@@ -201,84 +208,41 @@
     </section>
 
 
+    <!-- =====================================================
+         PÁGINA 5 — FOTO 3
+    ====================================================== -->
 
-    <!-- =====================================
-         PANTALLA 5
-         GALERÍA
-    ====================================== -->
+    <section class="pagina pagina-foto" id="recuerdo3">
 
-    <section id="galeria" class="pantalla">
+        <div class="contenido">
 
-        <div class="galeria-container">
-
-            <p class="etiqueta">
-                ALGUNOS RECUERDOS
+            <p class="numero">
+                RECUERDO 03 / 06
             </p>
 
             <h2>
-                Momentos 📸
+                Una más para recordar 🌙
             </h2>
 
-            <p class="subtitulo-galeria">
-                Porque algunas fotografías merecen
-                quedarse un poquito más.
-            </p>
+            <div class="foto-marco marco-3">
 
-
-            <div class="galeria">
-
-                <!-- FOTO 1 -->
-
-                <div class="foto foto1">
-                    <img src="imagen1.jpeg" alt="Recuerdo 1">
-                    <div class="numero-foto">01</div>
-                </div>
-
-
-                <!-- FOTO 2 -->
-
-                <div class="foto foto2">
-                    <img src="imagen2.jpeg" alt="Recuerdo 2">
-                    <div class="numero-foto">02</div>
-                </div>
-
-
-                <!-- FOTO 3 -->
-
-                <div class="foto foto3">
-                    <img src="imagen3.jpeg" alt="Recuerdo 3">
-                    <div class="numero-foto">03</div>
-                </div>
-
-
-                <!-- FOTO 4 -->
-
-                <div class="foto foto4">
-                    <img src="imagen4.jpeg" alt="Recuerdo 4">
-                    <div class="numero-foto">04</div>
-                </div>
-
-
-                <!-- FOTO 5 -->
-
-                <div class="foto foto5">
-                    <img src="imagen5.jpeg" alt="Recuerdo 5">
-                    <div class="numero-foto">05</div>
-                </div>
-
-
-                <!-- FOTO 6 -->
-
-                <div class="foto foto6">
-                    <img src="imagen6.jpeg" alt="Recuerdo 6">
-                    <div class="numero-foto">06</div>
-                </div>
+                <img
+                    src="imagen3.jpeg"
+                    alt="Recuerdo 3"
+                >
 
             </div>
 
+            <p class="frase-foto">
+                Algunas etapas cambian,
+                pero eso no significa que todo lo bonito desaparezca.
+            </p>
 
-            <button id="btnCarta" class="btn-principal">
-                Hay algo más... 💌
+            <button
+                class="btn"
+                onclick="siguiente('recuerdo4')"
+            >
+                Quiero ver otra →
             </button>
 
         </div>
@@ -286,30 +250,41 @@
     </section>
 
 
+    <!-- =====================================================
+         PÁGINA 6 — FOTO 4
+    ====================================================== -->
 
-    <!-- =====================================
-         PANTALLA 6
-         FRASE
-    ====================================== -->
+    <section class="pagina pagina-foto" id="recuerdo4">
 
-    <section id="frase" class="pantalla">
+        <div class="contenido">
 
-        <div class="tarjeta frase-card">
-
-            <div class="comillas">
-                “
-            </div>
-
-            <p class="frase-grande">
-                Hay recuerdos que,
-                aunque pase el tiempo,
-                uno guarda con cariño.
+            <p class="numero">
+                RECUERDO 04 / 06
             </p>
 
-            <div class="linea-decorativa"></div>
+            <h2>
+                Seguimos... 📷
+            </h2>
 
-            <button id="btnMensaje" class="btn-principal">
-                Leer el mensaje 💌
+            <div class="foto-marco marco-4">
+
+                <img
+                    src="imagen4.jpeg"
+                    alt="Recuerdo 4"
+                >
+
+            </div>
+
+            <p class="frase-foto">
+                Y sí...
+                todavía quedan un par de sorpresas.
+            </p>
+
+            <button
+                class="btn"
+                onclick="siguiente('recuerdo5')"
+            >
+                Siguiente ✨
             </button>
 
         </div>
@@ -317,19 +292,97 @@
     </section>
 
 
+    <!-- =====================================================
+         PÁGINA 7 — FOTO 5
+    ====================================================== -->
 
-    <!-- =====================================
-         PANTALLA 7
-         CARTA
-    ====================================== -->
+    <section class="pagina pagina-foto" id="recuerdo5">
 
-    <section id="carta" class="pantalla">
+        <div class="contenido">
+
+            <p class="numero">
+                RECUERDO 05 / 06
+            </p>
+
+            <h2>
+                Casi llegamos 💫
+            </h2>
+
+            <div class="foto-marco marco-5">
+
+                <img
+                    src="imagen5.jpeg"
+                    alt="Recuerdo 5"
+                >
+
+            </div>
+
+            <p class="frase-foto">
+                Gracias por los momentos que alguna vez
+                hicieron parte de la historia.
+            </p>
+
+            <button
+                class="btn"
+                onclick="siguiente('recuerdo6')"
+            >
+                Falta uno... →
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         PÁGINA 8 — FOTO 6
+    ====================================================== -->
+
+    <section class="pagina pagina-foto" id="recuerdo6">
+
+        <div class="contenido">
+
+            <p class="numero">
+                RECUERDO 06 / 06
+            </p>
+
+            <h2>
+                El último recuerdo 📸
+            </h2>
+
+            <div class="foto-marco marco-6">
+
+                <img
+                    src="imagen6.jpeg"
+                    alt="Recuerdo 6"
+                >
+
+            </div>
+
+            <p class="frase-foto">
+                Y ahora sí...
+                queda una última cosa que quiero decirte.
+            </p>
+
+            <button
+                class="btn btn-dorado"
+                onclick="siguiente('carta')"
+            >
+                Abrir el mensaje 💌
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         PÁGINA 9 — CARTA
+    ====================================================== -->
+
+    <section class="pagina pagina-carta" id="carta">
 
         <div class="carta">
-
-            <div class="sello">
-                ✨
-            </div>
 
             <p class="carta-para">
                 Para Dylan:
@@ -339,40 +392,59 @@
                 Un pequeño mensaje
             </h2>
 
-            <div class="linea-carta"></div>
+            <div class="linea"></div>
 
+            <div class="texto-carta">
 
-            <p>
-                No quería dejar pasar tu cumpleaños sin hacer algo especial por ti.
-            </p>
+                <p>
+                    No quería dejar pasar tu cumpleaños
+                    sin hacer algo especial por ti.
+                </p>
 
-            <p>
-                Tal vez las cosas entre nosotros cambiaron y hoy estamos en un lugar diferente, pero eso no significa que haya olvidado los momentos bonitos, las risas y los detalles que alguna vez compartimos.
-            </p>
+                <p>
+                    Tal vez las cosas entre nosotros cambiaron
+                    y hoy estamos en un lugar diferente, pero eso
+                    no significa que haya olvidado los momentos
+                    bonitos, las risas y los detalles que alguna
+                    vez compartimos.
+                </p>
 
-            <p>
-                Además, recuerdo que tú hiciste algo muy bonito por mi cumpleaños, y simplemente quería devolverte un poquito de ese detalle.
-            </p>
+                <p>
+                    Además, recuerdo que tú hiciste algo muy bonito
+                    por mi cumpleaños, y simplemente quería
+                    devolverte un poquito de ese detalle.
+                </p>
 
-            <p>
-                No hace falta darle un significado diferente. Solo quería desearte un cumpleaños muy bonito y recordarte que, a pesar de todo, te deseo cosas buenas.
-            </p>
+                <p>
+                    No hace falta darle un significado diferente.
+                    Solo quería desearte un cumpleaños muy bonito
+                    y recordarte que, a pesar de todo, te deseo
+                    cosas buenas.
+                </p>
 
-            <p>
-                Espero que este nuevo año de vida te traiga muchos motivos para sonreír, cumplir tus metas y rodearte de personas que realmente te hagan bien.
-            </p>
+                <p>
+                    Espero que este nuevo año de vida te traiga
+                    muchos motivos para sonreír, cumplir tus metas
+                    y rodearte de personas que realmente te hagan bien.
+                </p>
 
-            <p class="cumple-carta">
-                Feliz cumpleaños, Dylan. 🎂✨
-            </p>
+                <p class="felicitacion">
+                    <strong>
+                        Feliz cumpleaños, Dylan. 🎂✨
+                    </strong>
+                </p>
 
-            <p>
-                Disfruta mucho tu día.
-            </p>
+                <p>
+                    Disfruta mucho tu día.
+                </p>
 
+            </div>
 
-            <button id="btnPastel" class="btn-principal">
-                Todavía falta algo... 🎂
+            <button
+                class="btn btn-dorado"
+                onclick="siguiente('corazones')"
+            >
+                Todavía hay más... 💕
             </button>
 
         </div>
@@ -380,55 +452,251 @@
     </section>
 
 
+    <!-- =====================================================
+         PÁGINA 10 — CORAZONES
+    ====================================================== -->
 
-    <!-- =====================================
-         PANTALLA 8
-         PASTEL
-    ====================================== -->
+    <section class="pagina pagina-corazones" id="corazones">
 
-    <section id="pastel" class="pantalla">
+        <div class="contenido">
 
-        <div class="tarjeta pastel-card">
+            <div class="icono-sorpresa">
+                💕
+            </div>
 
-            <p class="etiqueta">
-                ÚLTIMA SORPRESA
+            <p class="pequeno-titulo">
+                UNA PEQUEÑA LLUVIA
             </p>
 
             <h2>
-                Antes de terminar...
+                De buenos deseos 💗
             </h2>
 
-            <p class="texto-suave">
-                Hay algo que tienes que hacer.
+            <p class="texto-centro">
+                No todos los corazones significan lo mismo.
+                Algunos simplemente dicen:
             </p>
 
+            <div class="frase-corazon">
+                "Espero que estés bien."
+            </div>
 
-            <div class="pastel">
+            <div class="frase-corazon">
+                "Espero que seas feliz."
+            </div>
 
-                <div class="llama llama1"></div>
-                <div class="llama llama2"></div>
-                <div class="llama llama3"></div>
+            <div class="frase-corazon">
+                "Y espero que te vaya increíble."
+            </div>
 
-                <div class="vela vela1"></div>
-                <div class="vela vela2"></div>
-                <div class="vela vela3"></div>
+            <button
+                class="btn"
+                onclick="siguiente('estrellas')"
+            >
+                Mirar las estrellas ⭐
+            </button>
 
-                <div class="crema"></div>
+        </div>
 
-                <div class="pastel-cuerpo">
-                    🎂
+    </section>
+
+
+    <!-- =====================================================
+         PÁGINA 11 — ESTRELLAS
+    ====================================================== -->
+
+    <section class="pagina pagina-estrellas" id="estrellas">
+
+        <div class="cielo">
+
+            <span class="estrella estrella-1">✦</span>
+            <span class="estrella estrella-2">✧</span>
+            <span class="estrella estrella-3">★</span>
+            <span class="estrella estrella-4">✦</span>
+            <span class="estrella estrella-5">✧</span>
+            <span class="estrella estrella-6">★</span>
+            <span class="estrella estrella-7">✦</span>
+            <span class="estrella estrella-8">✧</span>
+            <span class="estrella estrella-9">★</span>
+            <span class="estrella estrella-10">✦</span>
+            <span class="estrella estrella-11">✧</span>
+            <span class="estrella estrella-12">★</span>
+
+            <div class="contenido">
+
+                <div class="luna">
+                    🌙
+                </div>
+
+                <p class="pequeno-titulo">
+                    UN DESEO
+                </p>
+
+                <h2>
+                    Que este nuevo año
+                    esté lleno de estrellas ✨
+                </h2>
+
+                <p class="texto-centro">
+                    Que encuentres nuevos caminos,
+                    nuevas metas, nuevas razones para sonreír
+                    y muchas cosas que te hagan sentir orgulloso
+                    de todo lo que vas consiguiendo.
+                </p>
+
+                <button
+                    class="btn btn-dorado"
+                    onclick="siguiente('kawaii')"
+                >
+                    Una sorpresa kawaii 🎀
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         PÁGINA 12 — KAWAII
+    ====================================================== -->
+
+    <section class="pagina pagina-kawaii" id="kawaii">
+
+        <div class="decoracion-kawaii">
+
+            <span class="kawaii-flor flor-1">🌸</span>
+            <span class="kawaii-flor flor-2">🌷</span>
+            <span class="kawaii-flor flor-3">🌸</span>
+            <span class="kawaii-flor flor-4">🎀</span>
+
+            <div class="kawaii-tarjeta">
+
+                <div class="kitty-simbol">
+                    🎀
+                </div>
+
+                <p class="kawaii-mini">
+                    MOMENTO KAWAII
+                </p>
+
+                <h2>
+                    Un pequeño detalle
+                    para el cumpleañero 🎀
+                </h2>
+
+                <div class="kitty-carita">
+
+                    <div class="oreja izquierda"></div>
+                    <div class="oreja derecha"></div>
+
+                    <div class="cara">
+
+                        <div class="ojo ojo-izq"></div>
+                        <div class="ojo ojo-der"></div>
+
+                        <div class="nariz"></div>
+
+                        <div class="bigote b1"></div>
+                        <div class="bigote b2"></div>
+                        <div class="bigote b3"></div>
+
+                        <div class="bigote b4"></div>
+                        <div class="bigote b5"></div>
+                        <div class="bigote b6"></div>
+
+                    </div>
+
+                    <div class="moño">
+                        🎀
+                    </div>
+
+                </div>
+
+                <p class="kawaii-texto">
+                    Porque un cumpleaños también merece
+                    un poquito de ternura, colores bonitos
+                    y cosas que simplemente hagan sonreír. 💗
+                </p>
+
+                <div class="kawaii-corazones">
+                    💕 🌸 💗 🎀 💗 🌸 💕
+                </div>
+
+                <button
+                    class="btn btn-rosa"
+                    onclick="siguiente('polaroids')"
+                >
+                    Ver la última parte 📸
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         PÁGINA 13 — POLAROIDS
+    ====================================================== -->
+
+    <section class="pagina pagina-polaroids" id="polaroids">
+
+        <div class="contenido">
+
+            <p class="pequeno-titulo">
+                UNA ÚLTIMA MIRADA
+            </p>
+
+            <h2>
+                Seis pequeños recuerdos 📸
+            </h2>
+
+            <p class="texto-centro">
+                Porque una sola página no era suficiente.
+            </p>
+
+            <div class="polaroid-galeria">
+
+                <div class="polaroid p1">
+                    <img src="imagen1.jpeg" alt="Foto 1">
+                    <span>✨</span>
+                </div>
+
+                <div class="polaroid p2">
+                    <img src="imagen2.jpeg" alt="Foto 2">
+                    <span>🌸</span>
+                </div>
+
+                <div class="polaroid p3">
+                    <img src="imagen3.jpeg" alt="Foto 3">
+                    <span>💗</span>
+                </div>
+
+                <div class="polaroid p4">
+                    <img src="imagen4.jpeg" alt="Foto 4">
+                    <span>⭐</span>
+                </div>
+
+                <div class="polaroid p5">
+                    <img src="imagen5.jpeg" alt="Foto 5">
+                    <span>🎀</span>
+                </div>
+
+                <div class="polaroid p6">
+                    <img src="imagen6.jpeg" alt="Foto 6">
+                    <span>💕</span>
                 </div>
 
             </div>
 
-
-            <p id="textoVelas" class="texto-velas">
-                Pide un deseo y apaga las velas ✨
-            </p>
-
-
-            <button id="btnVelas" class="btn-principal">
-                Apagar las velas 🕯️
+            <button
+                class="btn btn-dorado"
+                onclick="siguiente('final')"
+            >
+                Llegar al final 🎂
             </button>
 
         </div>
@@ -436,85 +704,55 @@
     </section>
 
 
+    <!-- =====================================================
+         PÁGINA 14 — GRAN FINAL
+    ====================================================== -->
 
-    <!-- =====================================
-         PANTALLA FINAL
-    ====================================== -->
+    <section class="pagina pagina-final" id="final">
 
-    <section id="final" class="pantalla">
+        <div class="contenido">
 
-        <div id="confeti"></div>
-
-        <div class="final-card">
-
-            <div class="globos">
-                🎈 🎈 🎈
+            <div class="confeti-final">
+                🎉
             </div>
 
-
-            <div class="foto-final-container">
-
-                <img
-                    src="imagen3.jpeg"
-                    alt="Dylan"
-                    class="foto-final"
-                >
-
+            <div class="corona">
+                👑
             </div>
 
-
-            <p class="etiqueta">
-                HOY ES TU DÍA
+            <p class="pequeno-titulo">
+                FIN DE LA SORPRESA
             </p>
-
 
             <h1>
                 ¡Feliz cumpleaños,
-                <span id="nombreFinal">
-                    Dylan
-                </span>!
+                <span id="nombreFinal">Dylan</span>!
             </h1>
 
-
-            <div class="estrella-final">
-                ✨
+            <div class="pastel">
+                🎂
             </div>
 
-
-            <p class="mensaje-final">
-                Que este nuevo año de vida venga
-                acompañado de buenos momentos,
-                nuevas experiencias y muchas razones
-                para sonreír.
+            <p class="final-texto">
+                Espero que tengas un día increíble,
+                que sonrías muchísimo y que este nuevo año
+                venga lleno de cosas buenas.
             </p>
 
-
-            <p class="mensaje-final">
-                Espero que disfrutes muchísimo tu día
-                y que todo lo bueno llegue a tu vida.
-                🤍
+            <p class="final-pequeno">
+                Un pequeño detalle,
+                simplemente porque te lo mereces. ✨
             </p>
 
-
-            <div class="separador-final">
-                ✦　✦　✦
+            <div class="final-decoracion">
+                💕 ⭐ 🎀 ⭐ 💕
             </div>
 
-
-            <p class="firma">
-                Con cariño,<br>
-                alguien que no quería dejar pasar
-                este día especial.
-            </p>
-
-
-            <div class="corazones-final">
-                🤍　✨　🤍
-            </div>
-
-
-            <button id="btnRepetir" class="btn-secundario">
-                Volver a ver la sorpresa ↻
+            <button
+                class="btn"
+                onclick="volverInicio()"
+            >
+                Ver la sorpresa otra vez 🔄
             </button>
 
         </div>
@@ -522,10 +760,7 @@
     </section>
 
 
-
-    <!-- =====================================
-         JAVASCRIPT
-    ====================================== -->
+    <!-- JavaScript -->
 
     <script src="script.js"></script>
 

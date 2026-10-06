@@ -1,374 +1,175 @@
 /* =====================================================
-   OBTENER ELEMENTOS DEL HTML
+   VARIABLES
 ===================================================== */
 
-// Pantallas
-
-const inicio = document.getElementById("inicio");
-
-const bienvenida =
-    document.getElementById("bienvenida");
-
-const regalo =
-    document.getElementById("regalo");
-
-const recuerdosIntro =
-    document.getElementById("recuerdosIntro");
-
-const galeria =
-    document.getElementById("galeria");
-
-const frase =
-    document.getElementById("frase");
-
-const carta =
-    document.getElementById("carta");
-
-const pastel =
-    document.getElementById("pastel");
-
-const pantallaFinal =
-    document.getElementById("final");
-
-
-// Input
-
-const nombre =
-    document.getElementById("nombre");
-
-const errorNombre =
-    document.getElementById("errorNombre");
-
-
-// Botones
-
-const btnComenzar =
-    document.getElementById("btnComenzar");
-
-const btnRegalo =
-    document.getElementById("btnRegalo");
-
-const btnAbrirCaja =
-    document.getElementById("btnAbrirCaja");
-
-const btnFotos =
-    document.getElementById("btnFotos");
-
-const btnCarta =
-    document.getElementById("btnCarta");
-
-const btnMensaje =
-    document.getElementById("btnMensaje");
-
-const btnPastel =
-    document.getElementById("btnPastel");
-
-const btnVelas =
-    document.getElementById("btnVelas");
-
-const btnRepetir =
-    document.getElementById("btnRepetir");
-
-
-// Textos
-
-const nombreBienvenida =
-    document.getElementById("nombreBienvenida");
-
-const nombreFinal =
-    document.getElementById("nombreFinal");
-
-const cajaRegalo =
-    document.getElementById("cajaRegalo");
-
-const mensajeCaja =
-    document.getElementById("mensajeCaja");
-
-const textoVelas =
-    document.getElementById("textoVelas");
-
+let nombreUsuario = "Dylan";
 
 
 /* =====================================================
-   FUNCIÓN PARA CAMBIAR DE PANTALLA
+   CAMBIAR DE PÁGINA
 ===================================================== */
 
-function cambiarPantalla(actual, siguiente) {
+function siguiente(idPagina) {
 
-    actual.classList.remove("activa");
+    const paginaActual =
+        document.querySelector(".pagina.activa");
+
+    const paginaNueva =
+        document.getElementById(idPagina);
+
+
+    if (!paginaNueva) {
+        return;
+    }
+
+
+    if (paginaActual) {
+        paginaActual.classList.remove("activa");
+    }
+
 
     setTimeout(() => {
 
-        siguiente.classList.add("activa");
+        paginaNueva.classList.add("activa");
 
         window.scrollTo({
             top: 0,
             behavior: "smooth"
         });
 
-    }, 250);
+
+        /*
+         * Cuando llegamos a determinadas páginas
+         * activamos efectos especiales.
+         */
+
+        if (idPagina === "corazones") {
+
+            iniciarCorazones();
+
+        }
+
+
+        if (idPagina === "estrellas") {
+
+            iniciarEstrellas();
+
+        }
+
+
+        if (idPagina === "kawaii") {
+
+            crearConfeti();
+
+        }
+
+
+        if (idPagina === "polaroids") {
+
+            crearConfeti();
+
+        }
+
+
+        if (idPagina === "final") {
+
+            iniciarGranFinal();
+
+        }
+
+    }, 150);
 }
 
 
-
 /* =====================================================
-   VALIDACIÓN DEL NOMBRE
+   COMENZAR
 ===================================================== */
 
-btnComenzar.addEventListener(
-    "click",
-    function () {
+function comenzar() {
 
-        const nombreEscrito =
-            nombre.value.trim();
+    const input =
+        document.getElementById("nombre");
 
-
-        // Limpiar mensaje anterior
-
-        errorNombre.textContent = "";
+    const error =
+        document.getElementById("errorNombre");
 
 
-        // Comprobar si está vacío
+    const nombre =
+        input.value.trim();
 
-        if (nombreEscrito === "") {
 
-            errorNombre.textContent =
-                "⚠️ Escribe tu nombre para continuar.";
+    if (nombre === "") {
 
-            nombre.focus();
+        error.classList.add("mostrar");
 
+        input.focus();
+
+        return;
+    }
+
+
+    error.classList.remove("mostrar");
+
+
+    /*
+     * Si escribe cualquier nombre,
+     * lo guardamos.
+     */
+
+    nombreUsuario = nombre;
+
+
+    const nombreFinal =
+        document.getElementById("nombreFinal");
+
+
+    nombreFinal.textContent =
+        nombreUsuario;
+
+
+    /*
+     * Comenzamos.
+     */
+
+    siguiente("intro");
+
+
+    crearConfeti();
+}
+
+
+/* =====================================================
+   ENTER PARA CONTINUAR
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        const input =
+            document.getElementById("nombre");
+
+
+        if (!input) {
             return;
         }
 
 
-        // Comprobar que sea Dylan
+        input.addEventListener(
+            "keydown",
+            function(event) {
 
-        if (
-            nombreEscrito.toLowerCase()
-            !== "dylan"
-        ) {
+                if (event.key === "Enter") {
 
-            errorNombre.textContent =
-                "🤭 Mmm... esta sorpresa no es para ese nombre. Intenta nuevamente.";
+                    comenzar();
 
-            nombre.focus();
+                }
 
-            return;
-        }
-
-
-        // Mostrar nombre
-
-        nombreBienvenida.textContent =
-            "Dylan";
-
-        nombreFinal.textContent =
-            "Dylan";
-
-
-        // Continuar
-
-        cambiarPantalla(
-            inicio,
-            bienvenida
+            }
         );
 
     }
 );
-
-
-
-/* =====================================================
-   ENTER EN EL INPUT
-===================================================== */
-
-nombre.addEventListener(
-    "keydown",
-    function (evento) {
-
-        if (evento.key === "Enter") {
-
-            btnComenzar.click();
-
-        }
-
-    }
-);
-
-
-
-/* =====================================================
-   BIENVENIDA → REGALO
-===================================================== */
-
-btnRegalo.addEventListener(
-    "click",
-    function () {
-
-        cambiarPantalla(
-            bienvenida,
-            regalo
-        );
-
-    }
-);
-
-
-
-/* =====================================================
-   ABRIR CAJA DE REGALO
-===================================================== */
-
-btnAbrirCaja.addEventListener(
-    "click",
-    function () {
-
-        cajaRegalo.classList.add(
-            "abierta"
-        );
-
-
-        mensajeCaja.textContent =
-            "✨ Sabía que eras tú...";
-
-
-        btnAbrirCaja.textContent =
-            "Continuar ✨";
-
-
-        btnAbrirCaja.onclick = function () {
-
-            cambiarPantalla(
-                regalo,
-                recuerdosIntro
-            );
-
-        };
-
-    }
-);
-
-
-
-/* =====================================================
-   INTRO → GALERÍA
-===================================================== */
-
-btnFotos.addEventListener(
-    "click",
-    function () {
-
-        cambiarPantalla(
-            recuerdosIntro,
-            galeria
-        );
-
-    }
-);
-
-
-
-/* =====================================================
-   GALERÍA → FRASE
-===================================================== */
-
-btnCarta.addEventListener(
-    "click",
-    function () {
-
-        cambiarPantalla(
-            galeria,
-            frase
-        );
-
-    }
-);
-
-
-
-/* =====================================================
-   FRASE → CARTA
-===================================================== */
-
-btnMensaje.addEventListener(
-    "click",
-    function () {
-
-        cambiarPantalla(
-            frase,
-            carta
-        );
-
-    }
-);
-
-
-
-/* =====================================================
-   CARTA → PASTEL
-===================================================== */
-
-btnPastel.addEventListener(
-    "click",
-    function () {
-
-        cambiarPantalla(
-            carta,
-            pastel
-        );
-
-    }
-);
-
-
-
-/* =====================================================
-   APAGAR VELAS
-===================================================== */
-
-btnVelas.addEventListener(
-    "click",
-    function () {
-
-        const pastelVisual =
-            document.querySelector(".pastel");
-
-
-        // Apagar llamas
-
-        pastelVisual.classList.add(
-            "apagado"
-        );
-
-
-        textoVelas.textContent =
-            "✨ Deseo concedido...";
-
-
-        btnVelas.textContent =
-            "Ver la sorpresa final 🎉";
-
-
-        btnVelas.onclick = function () {
-
-            cambiarPantalla(
-                pastel,
-                pantallaFinal
-            );
-
-
-            // Lanzar confeti
-
-            setTimeout(
-                crearConfeti,
-                500
-            );
-
-        };
-
-    }
-);
-
 
 
 /* =====================================================
@@ -377,221 +178,383 @@ btnVelas.addEventListener(
 
 function crearConfeti() {
 
-    const cantidad = 160;
+    const contenedor =
+        document.querySelector(
+            ".confeti-container"
+        );
 
 
-    const formas = [
-        "●",
-        "■",
-        "◆",
-        "★",
-        "✦"
-    ];
+    if (!contenedor) {
+        return;
+    }
 
 
-    const colores = [
-
-        "#ff7eb6",
-
-        "#9b7cff",
-
-        "#ffd166",
-
-        "#ffffff",
-
-        "#7de2d1",
-
-        "#c4b5fd"
-
-    ];
-
-
-    for (
-        let i = 0;
-        i < cantidad;
-        i++
-    ) {
+    for (let i = 0; i < 45; i++) {
 
         const pieza =
             document.createElement("div");
 
 
-        pieza.classList.add(
-            "confeti"
-        );
+        pieza.classList.add("confeti");
 
-
-        // Forma
-
-        pieza.textContent =
-            formas[
-                Math.floor(
-                    Math.random()
-                    * formas.length
-                )
-            ];
-
-
-        // Color
-
-        pieza.style.color =
-            colores[
-                Math.floor(
-                    Math.random()
-                    * colores.length
-                )
-            ];
-
-
-        // Posición
 
         pieza.style.left =
-            Math.random() * 100 + "vw";
+            Math.random() * 100 + "%";
 
-
-        // Tamaño
-
-        const tamaño =
-            7 + Math.random() * 10;
-
-
-        pieza.style.fontSize =
-            tamaño + "px";
-
-
-        // Duración
-
-        const duracion =
-            3 + Math.random() * 5;
-
-
-        pieza.style.animationDuration =
-            duracion + "s";
-
-
-        // Retraso
 
         pieza.style.animationDelay =
             Math.random() * 1.5 + "s";
 
 
-        document.body.appendChild(
-            pieza
-        );
+        pieza.style.animationDuration =
+            2 + Math.random() * 3 + "s";
 
 
-        // Eliminar después
+        const tamaño =
+            5 + Math.random() * 7;
 
-        setTimeout(
-            () => {
 
-                pieza.remove();
+        pieza.style.width =
+            tamaño + "px";
 
-            },
-            8000
-        );
+
+        pieza.style.height =
+            tamaño * 1.5 + "px";
+
+
+        /*
+         * Variamos las formas.
+         */
+
+        if (Math.random() > .5) {
+
+            pieza.style.borderRadius = "50%";
+
+        }
+
+
+        contenedor.appendChild(pieza);
+
+
+        setTimeout(() => {
+
+            pieza.remove();
+
+        }, 6500);
 
     }
-
 }
 
 
-
 /* =====================================================
-   BOTÓN PARA REPETIR
+   CORAZONES FLOTANTES
 ===================================================== */
 
-btnRepetir.addEventListener(
-    "click",
-    function () {
-
-        // Limpiar caja
-
-        cajaRegalo.classList.remove(
-            "abierta"
-        );
+let intervaloCorazones = null;
 
 
-        // Restaurar textos
+function iniciarCorazones() {
 
-        mensajeCaja.textContent = "";
+    /*
+     * Evitamos crear varios intervalos.
+     */
 
-        btnAbrirCaja.textContent =
-            "Abrir regalo 🎁";
-
-
-        // Restaurar velas
-
-        const pastelVisual =
-            document.querySelector(".pastel");
+    if (intervaloCorazones) {
+        clearInterval(intervaloCorazones);
+    }
 
 
-        pastelVisual.classList.remove(
-            "apagado"
-        );
+    const simbolos = [
+        "💗",
+        "💕",
+        "💖",
+        "💓",
+        "💞",
+        "💝"
+    ];
 
 
-        textoVelas.textContent =
-            "Pide un deseo y apaga las velas ✨";
+    intervaloCorazones =
+        setInterval(() => {
+
+            crearCorazon(simbolos);
+
+        }, 280);
 
 
-        btnVelas.textContent =
-            "Apagar las velas 🕯️";
+    /*
+     * Creamos algunos inmediatamente.
+     */
 
+    for (let i = 0; i < 12; i++) {
 
-        // Restaurar funcionamiento
+        setTimeout(() => {
 
-        btnAbrirCaja.onclick = null;
+            crearCorazon(simbolos);
 
-        btnVelas.onclick = null;
-
-
-        // Volver al inicio
-
-        cambiarPantalla(
-            pantallaFinal,
-            inicio
-        );
+        }, i * 120);
 
     }
-);
+}
 
+
+function crearCorazon(simbolos) {
+
+    const contenedor =
+        document.querySelector(
+            ".corazones-container"
+        );
+
+
+    if (!contenedor) {
+        return;
+    }
+
+
+    const corazon =
+        document.createElement("div");
+
+
+    corazon.classList.add(
+        "corazon-flotante"
+    );
+
+
+    corazon.textContent =
+        simbolos[
+            Math.floor(
+                Math.random() *
+                simbolos.length
+            )
+        ];
+
+
+    corazon.style.left =
+        Math.random() * 100 + "%";
+
+
+    corazon.style.fontSize =
+        18 + Math.random() * 28 + "px";
+
+
+    corazon.style.animationDuration =
+        4 + Math.random() * 5 + "s";
+
+
+    corazon.style.animationDelay =
+        Math.random() * .5 + "s";
+
+
+    contenedor.appendChild(corazon);
+
+
+    setTimeout(() => {
+
+        corazon.remove();
+
+    }, 10000);
+}
 
 
 /* =====================================================
-   EFECTO EXTRA:
-   DOBLE CLIC EN LAS FOTOS
+   ESTRELLAS
 ===================================================== */
 
-const fotos =
-    document.querySelectorAll(".foto");
+function iniciarEstrellas() {
+
+    const pagina =
+        document.getElementById("estrellas");
 
 
-fotos.forEach(
-    function (foto) {
-
-        foto.addEventListener(
-            "dblclick",
-            function () {
-
-                foto.classList.add(
-                    "foto-destacada"
-                );
+    if (!pagina) {
+        return;
+    }
 
 
-                setTimeout(
-                    () => {
+    /*
+     * Pequeñas estrellas fugaces.
+     */
 
-                        foto.classList.remove(
-                            "foto-destacada"
-                        );
+    for (let i = 0; i < 8; i++) {
 
-                    },
-                    1000
+        const estrella =
+            document.createElement("span");
+
+
+        estrella.textContent = "✦";
+
+
+        estrella.style.position =
+            "absolute";
+
+
+        estrella.style.color =
+            "#fff4ad";
+
+
+        estrella.style.fontSize =
+            8 + Math.random() * 15 + "px";
+
+
+        estrella.style.left =
+            Math.random() * 100 + "%";
+
+
+        estrella.style.top =
+            Math.random() * 100 + "%";
+
+
+        estrella.style.opacity =
+            "0";
+
+
+        estrella.style.animation =
+            "parpadear 2s ease-in-out infinite";
+
+
+        estrella.style.animationDelay =
+            Math.random() * 3 + "s";
+
+
+        pagina.querySelector(
+            ".cielo"
+        ).appendChild(estrella);
+
+    }
+}
+
+
+/* =====================================================
+   GRAN FINAL
+===================================================== */
+
+function iniciarGranFinal() {
+
+    /*
+     * Mucho confeti.
+     */
+
+    crearConfeti();
+
+    setTimeout(
+        crearConfeti,
+        700
+    );
+
+    setTimeout(
+        crearConfeti,
+        1400
+    );
+
+
+    /*
+     * También corazones.
+     */
+
+    iniciarCorazones();
+
+
+    /*
+     * Después de un rato paramos
+     * los corazones para no saturar.
+     */
+
+    setTimeout(() => {
+
+        if (intervaloCorazones) {
+
+            clearInterval(
+                intervaloCorazones
+            );
+
+            intervaloCorazones = null;
+
+        }
+
+    }, 12000);
+}
+
+
+/* =====================================================
+   VOLVER AL INICIO
+===================================================== */
+
+function volverInicio() {
+
+    /*
+     * Ocultar todas las páginas.
+     */
+
+    document
+        .querySelectorAll(".pagina")
+        .forEach(
+            pagina => {
+
+                pagina.classList.remove(
+                    "activa"
                 );
 
             }
         );
+
+
+    /*
+     * Mostrar inicio.
+     */
+
+    document
+        .getElementById("inicio")
+        .classList.add("activa");
+
+
+    /*
+     * Limpiar nombre.
+     */
+
+    const input =
+        document.getElementById("nombre");
+
+
+    input.value = "";
+
+
+    /*
+     * Quitar error.
+     */
+
+    document
+        .getElementById("errorNombre")
+        .classList.remove(
+            "mostrar"
+        );
+
+
+    /*
+     * Confeti.
+     */
+
+    setTimeout(
+        crearConfeti,
+        300
+    );
+}
+
+
+/* =====================================================
+   LIMPIEZA AL CERRAR/RECARGAR
+===================================================== */
+
+window.addEventListener(
+    "beforeunload",
+    () => {
+
+        if (intervaloCorazones) {
+
+            clearInterval(
+                intervaloCorazones
+            );
+
+        }
 
     }
 );
